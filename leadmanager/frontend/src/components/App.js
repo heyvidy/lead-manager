@@ -9,10 +9,8 @@ class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Fragment>
-                    <Header />
-                    <Dashboard />
-                </Fragment>
+                <Header />
+                <Dashboard />
             </Provider>
         )
     }

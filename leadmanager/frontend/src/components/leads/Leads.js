@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { getLeads } from "../../actions/leads";
 
 export class Leads extends Component {
-
-    static propTypes = {
-        leads: PropTypes.array.isRequired,
-        getLeads: PropTypes.func.isRequired,
-
-    };
 
     componentDidMount() {
         this.props.getLeads();
@@ -24,12 +17,15 @@ export class Leads extends Component {
     }
 }
 
-
 const mapStateToProps = state => ({
-    leads: state.leads.leads
+    leads: state.leadsReducer.leads
 });
 
-export default connect(
-    mapStateToProps,
-    { getLeads }
-)(Leads);
+const mapDispatchToProps = dispatch => {
+    return {
+        getLeads: () => dispatch(getLeads())
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Leads);
